@@ -1,0 +1,6 @@
+<form (ngSubmit)="onSubmit()">
+    <app-primary-input label="Email" [(value)]="formData.email" />
+    <app-primary-input label="Senha" type="password" [(value)]="formData.password" />
+    <app-primary-button text="Entrar" />
+    <a routerLink="/signup">Não possui conta? Inscreva-se</a>
+</form>

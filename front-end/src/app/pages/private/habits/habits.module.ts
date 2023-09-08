@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HabitsRoutingModule } from './habits-routing.module';
-import { HabitsComponent } from './habits/habits.component';
+import { HabitsComponent } from './components/habits.component';
 
 
 @NgModule({

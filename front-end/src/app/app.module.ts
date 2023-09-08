@@ -1,11 +1,12 @@
+import { JwtModule } from '@auth0/angular-jwt';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { HabitsModule } from './habits/habits.module';
-import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -13,11 +14,18 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([   
-    ]),
+    AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    HabitsModule
+    HttpClientModule,
+    JwtModule.forRoot({
+      config:{
+        tokenGetter : () => localStorage.getItem('token'),
+        disallowedRoutes: ['/signin', '/users'],
+        throwNoTokenError: true,
+        skipWhenExpired: true,
+      }
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
