@@ -1,0 +1,43 @@
+mat-card {
+    margin-bottom: 20px;
+}
+
+.mat-button-toggle-group {
+    height: 32px;
+    align-items: center;
+    column-gap: 5px;
+    border: none;
+}
+
+.mat-button-toggle-group div {
+    height: 32px;
+}
+
+mat-button-toggle {
+    display: flex;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid lightgray;
+    color: gray;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 20px;
+    column-gap: 10px;
+}
+
+.buttons button {
+    height: 35px;
+    font-family: 'Lexend Deca';
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.white {
+    color: white;
+}

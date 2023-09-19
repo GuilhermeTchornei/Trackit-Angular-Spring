@@ -1,2 +1,23 @@
-<p>layout works!</p>
-<router-outlet></router-outlet>
+<header>
+    <mat-toolbar class="header" color="primary">
+        <h1>Trackit</h1>
+        <div class="icon-container">
+            <img class="icon" [src]="imageUrl" alt="" />
+        </div>
+    </mat-toolbar>
+</header>
+<main>
+    <router-outlet></router-outlet>
+</main>
+<footer>
+    <mat-toolbar class="footer">
+        <a routerLink="/habits">Hábitos</a>
+        <div class="circle-progress">
+            <circle-progress [percent]="85" [radius]="37" [outerStrokeWidth]="6" [outerStrokeColor]="'white'"
+                [backgroundColor]="'#52B6FF'" [innerStrokeWidth]="0" [animation]="true" [title]="'Hoje'"
+                [titleFontSize]="'18'" [titleColor]="'white'" [showSubtitle]="false" [showUnits]="false"
+                [animationDuration]="300"></circle-progress>
+        </div>
+        <a routerLink="/history">Histórico</a>
+    </mat-toolbar>
+</footer>

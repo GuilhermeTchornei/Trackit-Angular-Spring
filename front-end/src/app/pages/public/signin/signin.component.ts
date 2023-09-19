@@ -15,9 +15,9 @@ export class SigninComponent {
     password: '',
   };
 
-  constructor(public api: ApiService, private router: Router) {}
+  constructor(public api: ApiService, private router: Router) { }
 
-  onSubmit(){
+  onSubmit() {
     this.api.post<Signin, Token>("signin", this.formData).subscribe(response => {
       localStorage.setItem("token", response.token);
       this.router.navigate(["/habits"]);

@@ -1,0 +1,22 @@
+.title {
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.title button {
+    min-width: 40px;
+    height: 35px;
+    font-size: 28px;
+    font-weight: 500;
+    color: white;
+    padding: 0;
+}
+
+h2 {
+    color: #126BA5;
+    font-weight: 400;
+    font-size: 22px;
+}

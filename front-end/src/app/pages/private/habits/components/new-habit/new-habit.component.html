@@ -1,0 +1,18 @@
+<mat-card>
+    <mat-card-content>
+        <form (ngSubmit)="onSubmit(days.value)">
+            <app-primary-input label="Nome do hábito" type="text" [(value)]="formData.name" />
+            <mat-button-toggle-group #days="matButtonToggleGroup" multiple class="days">
+                <div *ngFor="let button of weekButtons; let i = index">
+                    <mat-button-toggle mat-stroked-button [value]="i">
+                        {{ button }}
+                    </mat-button-toggle>
+                </div>
+            </mat-button-toggle-group>
+            <div class="buttons">
+                <button mat-button color="accent" type="button" (click)="hideComponent()">Cancelar</button>
+                <button mat-flat-button color="accent" type="submit" class="white">Salvar</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

@@ -1,22 +1,41 @@
 @import '@angular/material/theming';
+@import '@angular/material';
 @include mat-core();
 
-$main-primary: mat-palette($mat-indigo-palette);
-$main-accent: mat-palette($mat-blue-palette, 500, A100, A400);
+$main-primary: mat-palette($mat-light-blue-palette, 900);
+$main-accent: mat-palette($mat-light-blue-palette, 400);
 $main-warn: mat-palette($mat-red-palette);
+$green: mat-palette($mat-green-palette, 400);
 
-$main-theme: mat-light-theme((
- color: (
-   primary: $main-primary,
-   accent: $main-accent,
-   warn: $main-warn,
- )
-));
+$main-theme: mat-light-theme((color: (primary: $main-primary,
+        accent: $main-accent,
+        warn: $main-warn,
+      ),
+      density: -2,
+    ));
 
 
 
 @include angular-material-theme($main-theme);
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-* { box-sizing: border-box; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Lexend Deca', "Helvetica Neue", sans-serif;
+}
+
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+  padding: 0 !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.dense-0 {
+  @include all-component-densities(0);
+}

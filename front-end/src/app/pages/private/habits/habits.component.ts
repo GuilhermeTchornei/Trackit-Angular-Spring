@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./habits.component.css']
 })
 export class HabitsComponent {
-
+  showNewHabit = false;
 }

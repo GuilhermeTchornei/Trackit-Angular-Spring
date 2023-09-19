@@ -21,7 +21,6 @@ import { HttpClientModule } from '@angular/common/http';
     JwtModule.forRoot({
       config:{
         tokenGetter : () => localStorage.getItem('token'),
-        disallowedRoutes: ['/signin', '/users'],
         throwNoTokenError: true,
         skipWhenExpired: true,
       }

@@ -1,0 +1,8 @@
+<div class="title">
+    <h2>Meus hábitos</h2>
+    <button mat-flat-button color="accent" class="new-habit" (click)="showNewHabit = !showNewHabit">+</button>
+</div>
+<app-new-habit *ngIf="showNewHabit" [(showNewHabit)]="showNewHabit"></app-new-habit>
+<div *ngIf="!showNewHabit">
+    Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
+</div>
