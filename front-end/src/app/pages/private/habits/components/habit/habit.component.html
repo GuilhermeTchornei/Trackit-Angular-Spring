@@ -1,1 +1,14 @@
-<p>habit works!</p>
+<mat-card>
+    <mat-card-content>
+        <div>
+            <h2>{{title}}</h2>
+        </div>
+        <mat-button-toggle-group class="days" multiple disabled="true">
+            <div *ngFor="let button of weekButtons; let i = index">
+                <mat-button-toggle mat-stroked-button [value]="i" [checked]="days.includes(i)">
+                    {{ button }}
+                </mat-button-toggle>
+            </div>
+        </mat-button-toggle-group>
+    </mat-card-content>
+</mat-card>

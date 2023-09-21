@@ -14,12 +14,12 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 
     @ExceptionHandler({ AccessDeniedException.class })
     ResponseEntity<Object> handleAccessDeniedException(Exception ex, WebRequest request) {
-        return new ResponseEntity<>("Errorrrrr", new HttpHeaders(), HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>(ex, new HttpHeaders(), HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler({ Exception.class })
     ResponseEntity<Object> handleOtherExceptions(Exception ex, WebRequest request) {
-        return new ResponseEntity<>("testeeeee", HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<>("ex", HttpStatus.UNAUTHORIZED);
     }
 
 }

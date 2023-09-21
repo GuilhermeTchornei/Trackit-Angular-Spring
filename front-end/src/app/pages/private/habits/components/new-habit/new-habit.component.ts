@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectorRef } from '@angular/core';
 import NewHabit from './interfaces/new-habit.interface';
 import { ApiService } from 'src/app/config/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-habit',
@@ -10,26 +11,28 @@ import { ApiService } from 'src/app/config/api.service';
 export class NewHabitComponent {
   @Input() showNewHabit!: boolean;
   @Output() showNewHabitChange = new EventEmitter<boolean>();
+  @Output() getHabits = new EventEmitter();
   weekButtons: string[] = [
     'D', 'S', 'T', 'Q', 'Q', 'S', 'S'
   ];
 
   formData: NewHabit = {
     name: '',
-    weekDays: []
+    days: []
   };
 
-  constructor(public api: ApiService) { }
+  constructor(public api: ApiService, private cd: ChangeDetectorRef) { }
 
   hideComponent() {
     this.showNewHabitChange.emit(false);
   }
 
   onSubmit(days: number[]) {
-    this.formData.weekDays = days;
+    this.formData.days = days;
 
-    this.api.post('/habits', this.formData).subscribe(() => {
+    this.api.post('habits', this.formData).subscribe(() => {
       this.hideComponent();
+      this.getHabits.emit();
     })
   }
 
