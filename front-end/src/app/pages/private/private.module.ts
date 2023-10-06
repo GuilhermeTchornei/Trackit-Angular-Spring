@@ -13,16 +13,28 @@ import { MatCardModule } from '@angular/material/card';
 import { PrimaryInputComponent } from 'src/app/sharedComponents/primary-input/primary-input.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FormsModule } from '@angular/forms';
-
-
+import { TodayComponent } from './today/today.component';
+import { TodayHabitsComponent } from './today/components/today-habits/today-habits.component';
+import { MatIconModule } from '@angular/material/icon';
+import { TodaysProgressionService } from 'src/app/services/todays-progression.service';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { HistoryComponent } from './history/history.component';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
+  providers: [
+    TodaysProgressionService,
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }
+  ],
   declarations: [
     LayoutComponent,
     HabitsComponent,
     NewHabitComponent,
     HabitComponent,
+    TodayComponent,
+    TodayHabitsComponent,
+    HistoryComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +45,9 @@ import { FormsModule } from '@angular/forms';
     PrimaryInputComponent,
     MatButtonToggleModule,
     FormsModule,
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     NgCircleProgressModule.forRoot({
       radius: 100,
       outerStrokeWidth: 16,

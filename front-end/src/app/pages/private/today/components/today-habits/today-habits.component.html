@@ -1,0 +1,12 @@
+<mat-card>
+    <mat-card-content>
+        <div>
+            <h3>{{habit.name}}</h3>
+            <p>Sequência atual: {{habit.sequence}}</p>
+            <p>Seu recorde: {{habit.record}}</p>
+        </div>
+        <button mat-flat-button [class.clicked]="isClicked" (click)="selectHabit()">
+            <mat-icon fontIcon="done"></mat-icon>
+        </button>
+    </mat-card-content>
+</mat-card>

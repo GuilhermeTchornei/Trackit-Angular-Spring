@@ -1,0 +1,36 @@
+mat-card-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+p {
+    font-size: 14px;
+    color: #666;
+}
+
+button {
+    height: 69px;
+    width: 69px;
+    min-height: 69px;
+    min-width: 69px;
+    padding: 0;
+
+    background-color: #E7E7E7 !important;
+}
+
+button.clicked {
+    background-color: #8FC549 !important;
+}
+
+mat-icon {
+    transform: scale(2.5);
+    margin: 0 !important;
+    font-weight: 700;
+    color: white;
+}

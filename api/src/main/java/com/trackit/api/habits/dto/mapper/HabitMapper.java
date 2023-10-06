@@ -18,6 +18,7 @@ public interface HabitMapper {
     @Mapping(expression = "java(mapIntToString(habitDto.days()))", target = "days")
     @Mapping(source = "habitDto.id", target = "id")
     @Mapping(source = "habitDto.name", target = "name")
+    @Mapping(target = "record_day", ignore = true)
     Habits habitDtoToHabits(HabitDto habitDto, Users user);
 
     default int[] mapStringToInteger(String days) {

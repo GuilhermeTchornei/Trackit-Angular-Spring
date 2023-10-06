@@ -5,7 +5,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${localStorage.getItem('token')}` // Include the bearer token here
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
   })
 };
 
@@ -17,18 +17,17 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  public get<resType>(endpoint: string): Observable<resType> {
-    return this.http.get<resType>(this.url + endpoint, httpOptions).pipe(catchError(this.handleError));
+  public get<resType>(endpoint: string, authorization: boolean = true): Observable<resType> {
+    return this.http.get<resType>(this.url + endpoint, authorization ? httpOptions : undefined).pipe(catchError(this.handleError));
   }
 
-  public post<reqType, resType>(endpoint: string, payload: reqType): Observable<resType> {
-    return this.http.post<resType>(this.url + endpoint, payload, httpOptions).pipe(catchError(this.handleError));
+  public post<reqType, resType>(endpoint: string, payload: reqType, authorization: boolean = true): Observable<resType> {
+    return this.http.post<resType>(this.url + endpoint, payload, authorization ? httpOptions : undefined).pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
-    console.log(error.status);
     if (error.status === 0) {
-      console.error(error.error);
+      console.error(error);
     }
     else {
       console.log(error);

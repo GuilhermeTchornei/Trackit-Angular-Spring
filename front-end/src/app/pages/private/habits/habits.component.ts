@@ -14,7 +14,8 @@ export class HabitsComponent implements OnInit {
   constructor(private api: ApiService, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.getHabits();
+    if (!this.habits)
+      this.getHabits();
   }
 
   getHabits() {

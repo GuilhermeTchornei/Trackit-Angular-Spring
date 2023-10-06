@@ -36,6 +36,36 @@ body {
   box-sizing: border-box;
 }
 
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
 .dense-0 {
   @include all-component-densities(0);
+}
+
+
+.mat-calendar-body-today {
+  border-width: 0 !important;
+  background: #29B6F6 !important
+}
+
+.mat-calendar-body-cell-content {
+  font-size: 16px !important;
+}
+
+.all_habits .mat-calendar-body-cell-content {
+  background: rgb(58, 202, 58) !important;
+}
+
+.half_habits .mat-calendar-body-cell-content {
+  background: rgb(252, 252, 42) !important;
+}
+
+.none_habits .mat-calendar-body-cell-content {
+  background: rgb(253, 54, 54) !important;
+  border-radius: 100%;
 }

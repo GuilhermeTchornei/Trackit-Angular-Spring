@@ -1,5 +1,7 @@
 package com.trackit.api.habits.model;
 
+import java.sql.Date;
+
 import org.hibernate.validator.constraints.Length;
 
 import com.trackit.api.user.model.Users;
@@ -13,6 +15,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -39,6 +42,20 @@ public class Habits {
     @NotBlank
     @NotNull
     String days;
+
+    @Column()
+    @PositiveOrZero
+    @NotNull
+    Integer sequence = 0;
+
+    @Column()
+    @PositiveOrZero
+    @NotNull
+    Integer record = 0;
+
+    @Column()
+    @NotNull
+    Date record_day = new Date(new java.util.Date().getTime());
 
     @ManyToOne
     @JoinColumn(name = "user_id")

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './pages/private/auth/auth.guard';
 
 
 
@@ -15,7 +16,7 @@ const routes: Routes = [
             .then(m => m.PublicModule)
       },
       {
-        path: 'habits', loadChildren:
+        path: '', canActivate: [AuthGuard], loadChildren:
           () => import('./pages/private/private.module')
             .then(m => m.PrivateModule)
       }

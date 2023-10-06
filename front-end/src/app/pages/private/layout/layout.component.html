@@ -12,8 +12,8 @@
 <footer>
     <mat-toolbar class="footer">
         <a routerLink="/habits">Hábitos</a>
-        <div class="circle-progress">
-            <circle-progress [percent]="85" [radius]="37" [outerStrokeWidth]="6" [outerStrokeColor]="'white'"
+        <div class="circle-progress" (click)="goToHoje()">
+            <circle-progress [percent]="progression" [radius]="37" [outerStrokeWidth]="6" [outerStrokeColor]="'white'"
                 [backgroundColor]="'#52B6FF'" [innerStrokeWidth]="0" [animation]="true" [title]="'Hoje'"
                 [titleFontSize]="'18'" [titleColor]="'white'" [showSubtitle]="false" [showUnits]="false"
                 [animationDuration]="300"></circle-progress>

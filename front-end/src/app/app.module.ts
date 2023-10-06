@@ -7,6 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import localePT from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localePT);
 
 @NgModule({
   declarations: [
@@ -19,8 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatToolbarModule,
     HttpClientModule,
     JwtModule.forRoot({
-      config:{
-        tokenGetter : () => localStorage.getItem('token'),
+      config: {
+        tokenGetter: () => localStorage.getItem('token'),
         throwNoTokenError: true,
         skipWhenExpired: true,
       }

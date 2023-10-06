@@ -9,18 +9,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-  
-formData: Signup = {
+
+  formData: Signup = {
     name: '',
     email: '',
     password: '',
     photo: ''
   };
 
-  constructor(public api: ApiService, private router: Router) {}
+  constructor(public api: ApiService, private router: Router) { }
 
-  onSubmit(){
-    this.api.post<Signup, null>("users", this.formData).subscribe(() => {
+  onSubmit() {
+    this.api.post<Signup, null>("users", this.formData, false).subscribe(() => {
       this.router.navigate(["/"]);
     });
   }

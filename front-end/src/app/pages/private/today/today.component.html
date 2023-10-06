@@ -1,0 +1,7 @@
+<div>
+    <h2>{{date}}</h2>
+    <h3 *ngIf="!isAnyHabitDone()">Nenhum hábito concluído ainda</h3>
+</div>
+<div class="habits" *ngFor="let habit of habits">
+    <app-today-habits [habit]="habit" />
+</div>
