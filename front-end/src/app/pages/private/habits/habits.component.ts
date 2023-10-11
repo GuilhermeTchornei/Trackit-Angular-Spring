@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ApiService } from 'src/app/config/api.service';
 import IHabits from './components/habit/interfaces/habit.interface';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-habits',
@@ -13,15 +14,13 @@ export class HabitsComponent implements OnInit {
 
   constructor(private api: ApiService, private cd: ChangeDetectorRef) { }
 
-  ngOnInit() {
-    if (!this.habits)
-      this.getHabits();
+  async ngOnInit() {
+    await this.getHabits();
   }
 
-  getHabits() {
-    this.api.get<IHabits[]>("habits").subscribe(response => {
-      this.habits = response;
-      this.cd.detectChanges();
-    });
+  async getHabits() {
+    const response = await lastValueFrom(this.api.get<IHabits[]>("habits"));
+    this.habits = response;
+    this.cd.detectChanges();
   }
 }

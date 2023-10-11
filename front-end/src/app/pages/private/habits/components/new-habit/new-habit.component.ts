@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, ChangeDetectorRef } from '@angu
 import NewHabit from './interfaces/new-habit.interface';
 import { ApiService } from 'src/app/config/api.service';
 import { Router } from '@angular/router';
+import { TodaysProgressionService } from 'src/app/services/todays-progression.service';
 
 @Component({
   selector: 'app-new-habit',
@@ -21,7 +22,7 @@ export class NewHabitComponent {
     days: []
   };
 
-  constructor(public api: ApiService, private cd: ChangeDetectorRef) { }
+  constructor(public api: ApiService, private cd: ChangeDetectorRef, private todaysProgression: TodaysProgressionService) { }
 
   hideComponent() {
     this.showNewHabitChange.emit(false);
@@ -33,6 +34,7 @@ export class NewHabitComponent {
     this.api.post('habits', this.formData).subscribe(() => {
       this.hideComponent();
       this.getHabits.emit();
+      this.todaysProgression.updateProgression();
     })
   }
 

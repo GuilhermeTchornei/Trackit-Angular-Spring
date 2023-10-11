@@ -6,12 +6,12 @@ import TokenPayload from './tokenPayload.interface';
   providedIn: 'root'
 })
 export class AuthService {
-  private token: string|null = localStorage.getItem('token');
+  private token: string | null = localStorage.getItem('token');
 
   constructor(private jwtHelper: JwtHelperService) { }
 
-  public getPayload(): string|null {
-    if(!this.token) return null;
+  public getPayload(): string | null {
+    if (!this.token) return null;
     return this.jwtHelper.decodeToken<TokenPayload>(this.token)?.email || null;
   }
 
@@ -19,7 +19,7 @@ export class AuthService {
     localStorage.removeItem("token");
   }
 
-  public isLoggedIn(): boolean{
+  public isLoggedIn(): boolean {
     return !this.jwtHelper.isTokenExpired(this.token);
   }
 }

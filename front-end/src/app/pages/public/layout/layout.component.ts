@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { AuthService } from './../../private/auth/auth.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-layout',

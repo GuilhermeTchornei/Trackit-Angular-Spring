@@ -1,5 +1,5 @@
 import { ApiService } from 'src/app/config/api.service';
-import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatCalendar, MatCalendarCellClassFunction } from '@angular/material/datepicker';
 import { lastValueFrom } from 'rxjs';
 import IMonthProgress from './interfaces/monthProgress.interface';
@@ -21,7 +21,9 @@ export class HistoryComponent implements OnInit {
 
     if (cellDate.getDate() === new Date().getDate()) return 'today';
 
-    return this.monthProgress.get(cellDate.toISOString().split('T')[0]) ? 'all_habits' : '';
+    const progress = this.monthProgress.get(cellDate.toISOString().split('T')[0]);
+
+    return progress === undefined ? '' : progress === 1 ? 'all_habits' : progress >= .5 ? 'half_habits' : 'none_habits';
   };
 
   constructor(private api: ApiService) { }

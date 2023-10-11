@@ -16,19 +16,19 @@ public class MonthProgressMapper {
         List<MonthProgressDto> monthProgress = new ArrayList<MonthProgressDto>();
 
         int j = 0;
+
         for (int i = 0; i < totalHabits.size(); i++) {
             Date date = totalHabits.get(i).getDate();
             Long total = totalHabits.get(i).getNumHabits();
             Long done = (long) 0;
 
-            if (doneHabits.get(j).getDate().equals(date)) {
-                done = doneHabits.get(i).getNumHabits();
+            if (j < doneHabits.size() && doneHabits.get(j).getDate().equals(date)) {
+                done = doneHabits.get(j).getNumHabits();
                 j += 1;
             }
 
             monthProgress.add(new MonthProgressDto(date, done, total));
         }
-
         return monthProgress;
     }
 }

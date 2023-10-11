@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.trackit.api.habits.model.Habits;
 import com.trackit.api.history.model.History;
+import com.trackit.api.progress.model.HabitsWithLastHistory;
 import com.trackit.api.progress.model.MonthHabits;
 import com.trackit.api.user.model.Users;
 
@@ -76,7 +77,8 @@ public class ProgressRepository {
 
         Predicate totalHabitsPredicate = criteria.and(monthPredicate, userPredicate);
 
-        criteriaQuery.multiselect(dayPath, criteria.count(historyRoot)).where(totalHabitsPredicate);
+        criteriaQuery.multiselect(dayPath, criteria.count(historyRoot)).where(totalHabitsPredicate)
+                .orderBy(criteria.asc(dayPath));
         criteriaQuery.groupBy(dayPath);
 
         return entityManager.createQuery(criteriaQuery).getResultList();
@@ -98,8 +100,25 @@ public class ProgressRepository {
         Predicate doneHabitsPredicate = criteria.and(monthPredicate, userPredicate,
                 donePredicate);
 
-        criteriaQuery.multiselect(dayPath, criteria.count(historyRoot)).where(doneHabitsPredicate);
+        criteriaQuery.multiselect(dayPath, criteria.count(historyRoot)).where(doneHabitsPredicate)
+                .orderBy(criteria.asc(dayPath));
         criteriaQuery.groupBy(dayPath);
+
+        return entityManager.createQuery(criteriaQuery).getResultList();
+    }
+
+    public List<HabitsWithLastHistory> findHabitsWithLastHistory(Users user) {
+        CriteriaBuilder criteria = entityManager.getCriteriaBuilder();
+        CriteriaQuery<HabitsWithLastHistory> criteriaQuery = criteria.createQuery(HabitsWithLastHistory.class);
+
+        Root<History> historyRoot = criteriaQuery.from(History.class);
+        Join<Habits, History> habitJoin = historyRoot.join("habit");
+
+        Predicate userPredicate = criteria.equal(habitJoin.get("user"), user);
+
+        criteriaQuery.multiselect(habitJoin.get("id"), habitJoin.get("days"), criteria.max(historyRoot.get("day")))
+                .where(userPredicate)
+                .groupBy(habitJoin.get("id"), habitJoin.get("days"));
 
         return entityManager.createQuery(criteriaQuery).getResultList();
     }

@@ -13,4 +13,7 @@ public interface HabitsRepository extends JpaRepository<Habits, Long> {
 
     @Query("SELECT h FROM Habits h WHERE h.user.id = :userId AND h.days LIKE %:today%")
     List<Habits> findTodayByUser(@Param("userId") Long userId, @Param("today") String today);
+
+    @Query("UPDATE Habits h SET h.sequence = 0 WHERE h.id = :habitId")
+    void resetSequenceById(@Param("habitId") long habitId);
 }

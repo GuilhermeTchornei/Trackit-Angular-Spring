@@ -1,7 +1,10 @@
 <div class="title">
-    <h2>Meus hábitos</h2>
+    <h2>Histórico</h2>
 </div>
 <mat-card *ngIf="monthProgress.size > 0" class="demo-inline-calendar-card">
     <mat-calendar [dateClass]="dateClass">
     </mat-calendar>
 </mat-card>
+<p *ngIf="monthProgress.size === 0">
+    Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
+</p>

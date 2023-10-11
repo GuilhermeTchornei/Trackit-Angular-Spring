@@ -34,4 +34,11 @@ public class History {
     @ManyToOne
     @JoinColumn(name = "habit_id")
     Habits habit;
+
+    public History(Long habitId, Date day) {
+        this.habit = new Habits();
+        this.habit.setId(habitId);
+        this.day = day;
+        this.done = false;
+    }
 }
